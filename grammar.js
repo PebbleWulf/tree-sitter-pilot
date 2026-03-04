@@ -21,11 +21,16 @@ module.exports = grammar({
 
   rules: {
 
-    // The whole program: zero or more lines, each ending with a newline.
-    source_file: $ => repeat(seq(
-      optional(choice($.label, $.remark, $.statement)),
-      /\r?\n/
-    )),
+    // The whole program: zero or more lines.
+    // Each line may contain a label, remark, or statement, followed by a newline.
+    // The final line's newline is optional to handle files without a trailing newline.
+    source_file: $ => seq(
+      repeat(seq(
+        optional(choice($.label, $.remark, $.statement)),
+        /\r?\n/
+      )),
+      optional(choice($.label, $.remark, $.statement))
+    ),
 
     // ── Labels ─────────────────────────────────────────────────────────────
     // A label is an asterisk followed by an identifier: *START, *LOOP, *END
