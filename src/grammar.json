@@ -73,6 +73,10 @@
       "type": "PATTERN",
       "value": "\\*[A-Za-z_][A-Za-z0-9_]*"
     },
+    "label_ref": {
+      "type": "PATTERN",
+      "value": "\\*[A-Za-z_][A-Za-z0-9_]*"
+    },
     "remark": {
       "type": "TOKEN",
       "content": {
@@ -153,6 +157,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "label_ref"
+          },
+          {
+            "type": "SYMBOL",
             "name": "operator"
           },
           {
@@ -213,7 +221,7 @@
     },
     "text_fragment": {
       "type": "PATTERN",
-      "value": "[^\\n#$=!<>]+"
+      "value": "[^\\n#$=!<>*]+"
     }
   },
   "extras": [

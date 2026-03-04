@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "label_ref",
+          "named": true
+        },
+        {
           "type": "operator",
           "named": true
         },
@@ -33,6 +37,16 @@
         }
       ]
     }
+  },
+  {
+    "type": "label",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "label_ref",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "operator",
@@ -108,10 +122,6 @@
   },
   {
     "type": "command",
-    "named": true
-  },
-  {
-    "type": "label",
     "named": true
   },
   {

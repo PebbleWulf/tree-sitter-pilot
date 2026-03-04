@@ -36,6 +36,14 @@ module.exports = grammar({
     // A label is an asterisk followed by an identifier: *START, *LOOP, *END
     label: $ => /\*[A-Za-z_][A-Za-z0-9_]*/,
 
+    // ── Label references ───────────────────────────────────────────────────
+    // A label reference is *LABELNAME appearing inside a command body.
+    // It uses the same pattern as a standalone label definition but is a
+    // separate node so that definitions and references can be styled
+    // independently if desired.
+    // Examples: J: *START   U: *CHECK_ANSWER   JN: *LOOP
+    label_ref: $ => /\*[A-Za-z_][A-Za-z0-9_]*/,
+
     // ── Remarks ────────────────────────────────────────────────────────────
     // A remark begins with R: (or RY: / RN:) and continues to end of line.
     // The entire line — including any embedded text — is treated as a comment.
@@ -68,6 +76,7 @@ module.exports = grammar({
       $.variable_numeric,
       $.variable_string,
       $.rand_call,
+      $.label_ref,       // label reference, e.g. *START, *THE_SUB
       $.operator,
       $.operator_char,
       $.text_fragment
@@ -91,8 +100,8 @@ module.exports = grammar({
     operator_char: $ => /[=!]/,
 
     // Plain body text: anything that is not a newline, variable sigil,
-    // or operator character.  The + requires at least one character,
-    // preventing an infinite empty-match loop inside repeat1().
-    text_fragment: $ => /[^\n#$=!<>]+/,
+    // operator character, or label-ref asterisk.  The + requires at least
+    // one character, preventing an infinite empty-match loop inside repeat1().
+    text_fragment: $ => /[^\n#$=!<>*]+/,
   }
 });
