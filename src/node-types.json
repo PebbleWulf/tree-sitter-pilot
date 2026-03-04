@@ -1,0 +1,141 @@
+[
+  {
+    "type": "body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "operator_char",
+          "named": true
+        },
+        {
+          "type": "rand_call",
+          "named": true
+        },
+        {
+          "type": "text_fragment",
+          "named": true
+        },
+        {
+          "type": "variable_numeric",
+          "named": true
+        },
+        {
+          "type": "variable_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "remark",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "command",
+    "named": true
+  },
+  {
+    "type": "label",
+    "named": true
+  },
+  {
+    "type": "operator_char",
+    "named": true
+  },
+  {
+    "type": "rand_call",
+    "named": true
+  },
+  {
+    "type": "remark",
+    "named": true
+  },
+  {
+    "type": "text_fragment",
+    "named": true
+  },
+  {
+    "type": "variable_numeric",
+    "named": true
+  },
+  {
+    "type": "variable_string",
+    "named": true
+  }
+]

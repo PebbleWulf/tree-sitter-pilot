@@ -1,0 +1,19 @@
+{
+  "name": "tree-sitter-pilot",
+  "version": "1.0.0",
+  "description": "Tree-sitter grammar for the PILOT language",
+  "main": "bindings/node",
+  "keywords": ["parser", "tree-sitter", "pilot"],
+  "dependencies": {
+    "nan": "^2.20.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.25.0"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.pilot",
+      "file-types": ["pilot", "pil", "plt"]
+    }
+  ]
+}

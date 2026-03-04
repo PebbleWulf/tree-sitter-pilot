@@ -1,0 +1,201 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "pilot",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "label"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "remark"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "statement"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\r?\\n"
+          }
+        ]
+      }
+    },
+    "label": {
+      "type": "PATTERN",
+      "value": "\\*[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "remark": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[Rr][YNyn]?[ \\t]*:"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^\\n]*"
+          }
+        ]
+      }
+    },
+    "statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "command"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "body"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "command": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[TACMJUEStacmjues]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[YNyn]?"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[ \\t]*"
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          }
+        ]
+      }
+    },
+    "body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "variable_numeric"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "variable_string"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "rand_call"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "operator"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "operator_char"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "text_fragment"
+          }
+        ]
+      }
+    },
+    "variable_numeric": {
+      "type": "PATTERN",
+      "value": "#[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "variable_string": {
+      "type": "PATTERN",
+      "value": "\\$[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "rand_call": {
+      "type": "PATTERN",
+      "value": "[Rr][Aa][Nn][Dd]\\([^)\\n]+\\)"
+    },
+    "operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "=="
+        },
+        {
+          "type": "STRING",
+          "value": "!="
+        },
+        {
+          "type": "STRING",
+          "value": ">="
+        },
+        {
+          "type": "STRING",
+          "value": "<="
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        }
+      ]
+    },
+    "operator_char": {
+      "type": "PATTERN",
+      "value": "[=!]"
+    },
+    "text_fragment": {
+      "type": "PATTERN",
+      "value": "[^\\n#$=!<>]+"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "[ \\t]"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
+}
